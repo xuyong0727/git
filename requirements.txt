@@ -1,0 +1,7 @@
+minimalmodbus
+pyserial
+SQLAlchemy
+pymysql
+pymssql
+pyinstaller
+psutil
