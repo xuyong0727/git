@@ -19,6 +19,12 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+      - name: Ensure config.ini exists
+        run: |
+          if (-not (Test-Path config.ini)) {
+            "[System]" | Out-File -Encoding utf8 config.ini
+            "person=admin" | Out-File -Append -Encoding utf8 config.ini
+          }
       - name: Build exe with PyInstaller
         run: |
           pyinstaller --clean --onefile --noconsole --icon=p.ico --add-data "config.ini;." scan_control.py
