@@ -28,11 +28,10 @@ jobs:
       - name: Build exe with PyInstaller
         run: |
           if (Test-Path p.ico) {
-            $iconArg = '--icon=p.ico'
+            pyinstaller --clean --onefile --noconsole --icon=p.ico --add-data "config.ini;." scan_control.py
           } else {
-            $iconArg = ''
+            pyinstaller --clean --onefile --noconsole --add-data "config.ini;." scan_control.py
           }
-          pyinstaller --clean --onefile --noconsole $iconArg --add-data "config.ini;." scan_control.py
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
